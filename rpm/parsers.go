@@ -18,8 +18,8 @@ func ParseMetadata(body io.Reader) (*Metadata, error) {
 	return &metadata, nil
 }
 
-func ParseRepoMd(body io.Reader) (*RepoMd, error) {
-	repomd := RepoMd{}
+func ParseRepomd(body io.Reader) (*Repomd, error) {
+	repomd := Repomd{}
 
 	xmlDecoder := xml.NewDecoder(body)
 	err := xmlDecoder.Decode(&repomd)

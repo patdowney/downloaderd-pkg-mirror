@@ -13,7 +13,7 @@ type Data struct {
 	Size         uint64   `xml:"size"`
 }
 
-type RepoMd struct {
+type Repomd struct {
 	XMLName  xml.Name `xml:"repomd"`
 	Revision string   `xml:"revision"`
 	Data     []Data   `xml:"data"`

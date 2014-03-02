@@ -93,7 +93,7 @@ func (r *DebianResource) ReleaseHandler() http.HandlerFunc {
 			}
 		}
 
-		rw.WriteHeader(http.StatusNoContent)
+		rw.WriteHeader(http.StatusOK)
 	}
 }
 
@@ -142,6 +142,6 @@ func (r *DebianResource) PackagesHandler() http.HandlerFunc {
 
 		log.Printf("packages-handler processed for: %s", download.URL)
 
-		rw.WriteHeader(http.StatusNoContent)
+		rw.WriteHeader(http.StatusOK)
 	}
 }

@@ -29,7 +29,7 @@ func TestRepomdParsing(t *testing.T) {
 `
 
 	r := strings.NewReader(repomdData)
-	repomd, err := ParseRepoMd(r)
+	repomd, err := ParseRepomd(r)
 	if err != nil {
 		t.Error(err)
 	}
