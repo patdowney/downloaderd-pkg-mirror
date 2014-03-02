@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	api "github.com/patdowney/downloaderd-deb/downloaderdapi"
-	client "github.com/patdowney/downloaderd-deb/downloaderdclient"
+	api "github.com/patdowney/downloaderd-pkg/downloaderdapi"
+	client "github.com/patdowney/downloaderd-pkg/downloaderdclient"
 )
 
 type RepomdService struct {

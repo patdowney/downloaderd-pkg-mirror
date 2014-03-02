@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"os"
 
-	client "github.com/patdowney/downloaderd-deb/downloaderdclient"
+	client "github.com/patdowney/downloaderd-pkg/downloaderdclient"
 )
 
 func ConfigureLogging() {

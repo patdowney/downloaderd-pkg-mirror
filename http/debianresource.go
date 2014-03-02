@@ -8,9 +8,9 @@ import (
 	"net/url"
 
 	"github.com/gorilla/mux"
-	"github.com/patdowney/downloaderd-deb/common"
-	"github.com/patdowney/downloaderd-deb/deb"
-	api "github.com/patdowney/downloaderd-deb/downloaderdapi"
+	"github.com/patdowney/downloaderd-pkg/common"
+	"github.com/patdowney/downloaderd-pkg/deb"
+	api "github.com/patdowney/downloaderd-pkg/downloaderdapi"
 )
 
 type DebianResource struct {

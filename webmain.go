@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/patdowney/downloaderd-deb/deb"
-	client "github.com/patdowney/downloaderd-deb/downloaderdclient"
-	dh "github.com/patdowney/downloaderd-deb/http"
-	"github.com/patdowney/downloaderd-deb/rpm"
+	"github.com/patdowney/downloaderd-pkg/deb"
+	client "github.com/patdowney/downloaderd-pkg/downloaderdclient"
+	dh "github.com/patdowney/downloaderd-pkg/http"
+	"github.com/patdowney/downloaderd-pkg/rpm"
 )
 
 func webmain(c *client.Client, listenPort int, listenHost string) {
