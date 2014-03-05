@@ -9,9 +9,9 @@ import (
 	"net/url"
 
 	"github.com/gorilla/mux"
-	"github.com/patdowney/downloaderd-pkg/common"
-	api "github.com/patdowney/downloaderd-pkg/downloaderdapi"
-	"github.com/patdowney/downloaderd-pkg/rpm"
+	"github.com/patdowney/downloaderd-pkg-mirror/common"
+	api "github.com/patdowney/downloaderd-pkg-mirror/downloaderdapi"
+	"github.com/patdowney/downloaderd-pkg-mirror/rpm"
 )
 
 type RepomdResource struct {

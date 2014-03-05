@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	api "github.com/patdowney/downloaderd-pkg/downloaderdapi"
-	client "github.com/patdowney/downloaderd-pkg/downloaderdclient"
+	api "github.com/patdowney/downloaderd-pkg-mirror/downloaderdapi"
+	client "github.com/patdowney/downloaderd-pkg-mirror/downloaderdclient"
 	"github.com/patdowney/godebiancontrol"
 )
 

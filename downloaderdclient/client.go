@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 
-	api "github.com/patdowney/downloaderd-pkg/downloaderdapi"
+	api "github.com/patdowney/downloaderd-pkg-mirror/downloaderdapi"
 )
 
 type Client struct {

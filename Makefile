@@ -1,4 +1,4 @@
-NAME=downloaderd-pkg
+NAME=$(shell basename `pwd`)
 MINOR_VERSION=$(shell git log -1 --format=%ad --date=short | sed 's/-//g')
 
 VERSION=0.0.$(MINOR_VERSION)
