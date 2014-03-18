@@ -13,11 +13,12 @@ import (
 )
 
 type RepomdService struct {
-	Client *client.Client
+	Client        *client.Client
+	ListenAddress string
 }
 
-func NewRepomdService(c *client.Client) *RepomdService {
-	s := &RepomdService{Client: c}
+func NewRepomdService(c *client.Client, listenAddress string) *RepomdService {
+	s := &RepomdService{Client: c, ListenAddress: listenAddress}
 	return s
 }
 
@@ -53,13 +54,13 @@ func (s *RepomdService) ProcessMetadata(baseURL string, originalURL string, pack
 func (s *RepomdService) CallbackForFile(filePath string) string {
 	baseFilename := filepath.Base(filePath)
 	if strings.HasSuffix(baseFilename, "-primary.xml.gz") {
-		return "http://localhost:8081/rpm/metadata-handler"
+		return fmt.Sprintf("http://%s/rpm/metadata-handler", s.ListenAddress)
 	} else if baseFilename == "repomd.xml" {
-		return "http://localhost:8081/rpm/repomd-handler"
+		return fmt.Sprintf("http://%s/rpm/repomd-handler", s.ListenAddress)
 	} else if filepath.Ext(baseFilename) == ".rpm" {
-		return "http://localhost:8081/rpm/rpm-handler"
+		return fmt.Sprintf("http://%s/rpm/rpm-handler", s.ListenAddress)
 	} else {
-		return "http://localhost:8081/rpm/default-handler"
+		return fmt.Sprintf("http://%s/rpm/default-handler", s.ListenAddress)
 	}
 }
 

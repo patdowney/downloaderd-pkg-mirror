@@ -13,11 +13,12 @@ import (
 )
 
 type DebianService struct {
-	Client *client.Client
+	Client        *client.Client
+	ListenAddress string
 }
 
-func NewDebianService(c *client.Client) *DebianService {
-	s := &DebianService{Client: c}
+func NewDebianService(c *client.Client, listenAddress string) *DebianService {
+	s := &DebianService{Client: c, ListenAddress: listenAddress}
 	return s
 }
 
@@ -50,13 +51,14 @@ func (s *DebianService) ProcessPackages(baseURL string, originalURL string, pack
 func (s *DebianService) CallbackForFile(filePath string) string {
 	baseFilename := filepath.Base(filePath)
 	if baseFilename == "Packages.gz" {
-		return "http://localhost:8081/deb/packages-handler"
+		return fmt.Sprintf("http://%s/deb/packages-handler", s.ListenAddress)
 	} else if baseFilename == "Release" {
-		return "http://localhost:8081/deb/release-handler"
+		return fmt.Sprintf("http://%s/deb/release-handler", s.ListenAddress)
 	} else if filepath.Ext(baseFilename) == ".deb" {
-		return "http://localhost:8081/deb/deb-handler"
+		return fmt.Sprintf("http://%s/deb/deb-handler", s.ListenAddress)
 	} else {
-		return "http://localhost:8081/deb/default-handler"
+		return fmt.Sprintf("http://%s/deb/default-handler", s.ListenAddress)
+
 	}
 }
 

@@ -12,11 +12,11 @@ import (
 func webmain(c *client.Client, listenAddress string) {
 	s := dh.NewServer(&dh.HTTPConfig{ListenAddress: listenAddress})
 
-	ds := deb.NewDebianService(c)
+	ds := deb.NewDebianService(c, listenAddress)
 	dr := dh.NewDebianResource(ds)
 	s.AddResource("/deb", dr)
 
-	rs := rpm.NewRepomdService(c)
+	rs := rpm.NewRepomdService(c, listenAddress)
 	rr := dh.NewRepomdResource(rs)
 	s.AddResource("/rpm", rr)
 
