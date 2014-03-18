@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/patdowney/downloaderd-pkg-mirror/deb"
@@ -10,8 +9,7 @@ import (
 	"github.com/patdowney/downloaderd-pkg-mirror/rpm"
 )
 
-func webmain(c *client.Client, listenPort int, listenHost string) {
-	listenAddress := fmt.Sprintf("%s:%d", listenHost, listenPort)
+func webmain(c *client.Client, listenAddress string) {
 	s := dh.NewServer(&dh.HTTPConfig{ListenAddress: listenAddress})
 
 	ds := deb.NewDebianService(c)

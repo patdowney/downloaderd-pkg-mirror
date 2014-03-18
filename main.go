@@ -16,8 +16,8 @@ func ConfigureLogging() {
 }
 
 func main() {
-	var listenPort *int = flag.Int("port", 8081, "port to listen on")
-	var listenHost *string = flag.String("host", "", "address to listen on")
+	var listenAddress *string = flag.String("host", "localhost:8081", "address to listen on")
+	var downloaderdUrl *string = flag.String("downloaderd", "http://localhost:8082/request/", "address to listen on")
 
 	flag.Parse()
 	baseUrlArg := flag.Arg(0)
@@ -25,15 +25,14 @@ func main() {
 
 	ConfigureLogging()
 
-	downloaderUrl := "http://localhost:8080/request/"
 	//--type debian
 	//--distBase "http://archive.ubuntu.com/ubuntu/dists/precise-updates"
 
 	var waitForeverChannel chan int
 
-	c := client.NewDownloaderdClient(downloaderUrl)
+	c := client.NewDownloaderdClient(*downloaderdUrl)
 
-	go webmain(c, *listenPort, *listenHost)
+	go webmain(c, *listenAddress)
 
 	baseUrl, _ := url.Parse(baseUrlArg)
 	baseDistUrl, _ := baseUrl.Parse("dists/")
@@ -46,7 +45,8 @@ func main() {
 	//releaseUrl := fmt.Sprintf("%s/%s", distUrl, "Release")
 	//releaseSig := fmt.Sprintf("%s/%s", baseUrl, "Release.gpg")
 
-	_, err := c.RequestDownloadWithCallback(releaseUrl.String(), "http://localhost:8081/deb/release-handler")
+	releaseHandler := fmt.Sprintf("http://%s/deb/release-handler", listenAddress)
+	_, err := c.RequestDownloadWithCallback(releaseUrl.String(), releaseHandler)
 	if err != nil {
 		panic(err)
 	}
