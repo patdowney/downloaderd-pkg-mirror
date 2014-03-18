@@ -18,8 +18,6 @@ func main() {
 	var downloaderdUrl *string = flag.String("downloaderd", "http://localhost:8082/request/", "downloaderd request endpoint")
 
 	flag.Parse()
-	baseUrlArg := flag.Arg(0)
-	distName := flag.Arg(1)
 
 	ConfigureLogging()
 
