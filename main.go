@@ -16,8 +16,8 @@ func ConfigureLogging() {
 }
 
 func main() {
-	var listenAddress *string = flag.String("host", "localhost:8081", "address to listen on")
-	var downloaderdUrl *string = flag.String("downloaderd", "http://localhost:8082/request/", "address to listen on")
+	var listenAddress *string = flag.String("http", "localhost:8081", "address to listen on")
+	var downloaderdUrl *string = flag.String("downloaderd", "http://localhost:8082/request/", "downloaderd request endpoint")
 
 	flag.Parse()
 	baseUrlArg := flag.Arg(0)
@@ -34,22 +34,6 @@ func main() {
 
 	go webmain(c, *listenAddress)
 
-	baseUrl, _ := url.Parse(baseUrlArg)
-	baseDistUrl, _ := baseUrl.Parse("dists/")
-	distUrl, _ := baseDistUrl.Parse(fmt.Sprintf("%s/", distName))
-
-	//baseUrl := "http://ftp.us.debian.org/debian/dists/wheezy-updates"
-	//baseUrl := "http://archive.ubuntu.com/ubuntu/dists/precise-updates"
-	releaseUrl, _ := distUrl.Parse("Release")
-
-	//releaseUrl := fmt.Sprintf("%s/%s", distUrl, "Release")
-	//releaseSig := fmt.Sprintf("%s/%s", baseUrl, "Release.gpg")
-
-	releaseHandler := fmt.Sprintf("http://%s/deb/release-handler", listenAddress)
-	_, err := c.RequestDownloadWithCallback(releaseUrl.String(), releaseHandler)
-	if err != nil {
-		panic(err)
-	}
-
+	//		releaseHandler := fmt.Sprintf("http://%s/deb/release-handler", listenAddress)
 	<-waitForeverChannel
 }
