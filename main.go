@@ -2,9 +2,7 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"log"
-	"net/url"
 	"os"
 
 	client "github.com/patdowney/downloaderd-pkg-mirror/downloaderdclient"
